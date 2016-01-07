@@ -17,12 +17,11 @@ ENV ELASTICSEARCH_MAJOR 2.1
 ENV ELASTICSEARCH_VERSION 2.1.1
 ENV ELASTICSEARCH_REPO_BASE http://packages.elasticsearch.org/elasticsearch/2.x/debian
 
-RUN echo "deb $ELASTICSEARCH_REPO_BASE stable main" > /etc/apt/sources.list.d/elasticsearch.list
+RUN cd /tmp \
+  && wget -q https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.deb
 
-RUN set -x \
-	&& apt-get update \
-	&& apt-get install -y --no-install-recommends elasticsearch=$ELASTICSEARCH_VERSION \
-	&& rm -rf /var/lib/apt/lists/*
+RUN cd /tmp \
+  && dpkg -i elasticsearch-${ELASTICSEARCH_VERSION}.deb \
 
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 
