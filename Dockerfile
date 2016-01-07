@@ -21,7 +21,7 @@ RUN cd /tmp \
   && wget -q https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.deb
 
 RUN cd /tmp \
-  && dpkg -i elasticsearch-${ELASTICSEARCH_VERSION}.deb \
+  && dpkg -i elasticsearch-${ELASTICSEARCH_VERSION}.deb
 
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 
